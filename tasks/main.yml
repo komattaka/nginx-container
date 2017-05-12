@@ -1,0 +1,26 @@
+---
+# tasks/main.yml
+
+- name: Update apt packages
+  raw: "apt-get update"
+
+- name: Install ansible requirements
+  raw: "apt-get install -y python libpython2.7 python-apt aptitude"
+
+- name: Gathering Facts
+  setup:
+    gather_subset: all
+
+- name: Upgrade Packages
+  apt:
+    upgrade: yes
+
+- name: Install ca-certificates
+  apt:
+    name: ca-certificates
+    state: latest
+
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: latest
